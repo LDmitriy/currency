@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Cotacts
+{% endblock title %}
+
+
+{% block content %}
+    <table style="border: 1px solid black; border-collapse: collapse">
+        <tr>
+            <th style="padding: 0.5rem 0.75rem; border: 1px solid black">
+                Id:
+            </th>
+            <th style="padding: 0.5rem 0.75rem; border: 1px solid black">
+                Email from:
+            </th>
+            <th style="padding: 0.5rem 0.75rem; border: 1px solid black">
+                Subject:
+            </th>
+        </tr>
+        {% for contact in contacts %}
+            <tr>
+                <td style="padding: 0.5rem 0.75rem; border: 1px solid black">
+                    {{ contact.id }}
+                </td>
+                <td style="padding: 0.5rem 0.75rem; border: 1px solid black">
+                    {{ contact.email_from }}
+                </td>
+                <td style="padding: 0.5rem 0.75rem; border: 1px solid black">
+                    {{ contact.subject }}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock content %}

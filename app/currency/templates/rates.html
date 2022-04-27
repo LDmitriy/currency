@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Rates
+{% endblock title %}
+
+
+{% block content %}
+    <table style="border: 1px solid black; border-collapse: collapse">
+        <tr>
+            <th style="padding: 0.5rem 0.75rem; border: 1px solid black">
+                Id:
+            </th>
+            <th style="padding: 0.5rem 0.75rem; border: 1px solid black">
+                Type:
+            </th>
+            <th style="padding: 0.5rem 0.75rem; border: 1px solid black">
+                Sourse:
+            </th>
+            <th style="padding: 0.5rem 0.75rem; border: 1px solid black">
+                Buy:
+            </th>
+            <th style="padding: 0.5rem 0.75rem; border: 1px solid black">
+                Sale:
+            </th>
+            <th style="padding: 0.5rem 0.75rem; border: 1px solid black">
+                Created:
+            </th>
+        </tr>
+        {% for rate in rates %}
+            <tr><td style="padding: 0.5rem 0.75rem; border: 1px solid black">
+                    {{ rate.id }}
+                </td>
+                <td style="padding: 0.5rem 0.75rem; border: 1px solid black">
+                    {{ rate.type }}
+                </td>
+                <td style="padding: 0.5rem 0.75rem; border: 1px solid black">
+                    {{ rate.source }}
+                </td>
+                <td style="padding: 0.5rem 0.75rem; border: 1px solid black">
+                    {{ rate.buy }}
+                </td>
+                <td style="padding: 0.5rem 0.75rem; border: 1px solid black">
+                    {{ rate.sale }}
+                </td>
+                <td style="padding: 0.5rem 0.75rem; border: 1px solid black">
+                    {{ rate.created|date:"m.d.Y" }}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock content %}
