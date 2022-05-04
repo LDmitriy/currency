@@ -1,6 +1,6 @@
 from django import forms
 
-from currency.models import Source
+from .models import Source
 
 
 class SourceForm(forms.ModelForm):
