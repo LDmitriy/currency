@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Source
+{% endblock title %}
+
+
+{% block content %}
+    <a href="/source/create/">Create source</a>
+    <table style="border: 1px solid black; border-collapse: collapse">
+        <tr>
+            <th style="padding: 0.5rem 0.75rem; border: 1px solid black">
+                Id:
+            </th>
+            <th style="padding: 0.5rem 0.75rem; border: 1px solid black">
+                Name:
+            </th>
+            <th style="padding: 0.5rem 0.75rem; border: 1px solid black">
+                Sourse URL:
+            </th>
+            <th style="padding: 0.5rem 0.75rem; border: 1px solid black">
+                Phone number:
+            </th>
+        </tr>
+        {% for sour in sour %}
+            <tr>
+                <td style="padding: 0.5rem 0.75rem; border: 1px solid black">
+                    {{ sour.id }}
+                </td>
+                <td style="padding: 0.5rem 0.75rem; border: 1px solid black">
+                    {{ sour.name }}
+                </td>
+                <td style="padding: 0.5rem 0.75rem; border: 1px solid black">
+                    {{ sour.source_url }}
+                </td>
+                <td style="padding: 0.5rem 0.75rem; border: 1px solid black">
+                    {{ sour.phone_number }}
+                </td>
+                <td style="padding: 0.5rem 0.75rem; border: 1px solid black">
+                    <a href="/source/update/{{ sour.id }}">Edit</a>
+                </td>
+                <td style="padding: 0.5rem 0.75rem; border: 1px solid black">
+                    <a href="/source/delete/{{ sour.id }}">Delete</a>
+                </td>
+            </tr>
+
+        {% endfor %}
+    </table>
+{% endblock content %}
