@@ -1,58 +1,41 @@
-from django.http import HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
+from django.urls import reverse_lazy
+
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 from .models import ContactUs, Rate, Source
-
 from .forms import SourceForm
 
 
-def contactus(request):
-    contacts = ContactUs.objects.all()
-    return render(request, 'contactus.html', context={'contacts': contacts})
+class SourceList(ListView):
+    queryset = Source.objects.all().order_by('-id')
+    template_name = 'source.html'
 
 
-def index(request):
-    return render(request, 'index.html')
+class SourceCreate(CreateView):
+    model = Source
+    template_name = 'source_create.html'
+    form_class = SourceForm
+    success_url = reverse_lazy('currency:source')
 
 
-def rates(request):
-    rate = Rate.objects.all()
-    return render(request, 'rates.html', context={'rates': rate})
+class SourceUpdate(UpdateView):
+    model = Source
+    template_name = 'source_update.html'
+    form_class = SourceForm
+    success_url = reverse_lazy('currency:source')
 
 
-def source(request):
-    sour = Source.objects.all().order_by('-id')
-    return render(request, 'source.html', context={'sour': sour})
+class SourceDelete(DeleteView):
+    model = Source
+    template_name = 'source_delete.html'
+    success_url = reverse_lazy('currency:source')
 
 
-def source_create(request):
-    if request.method == 'POST':
-        form = SourceForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('/Source/')
-    else:
-        form = SourceForm()
-    return render(request, 'source_create.html', context={'form': form})
+class ContactUsList(ListView):
+    queryset = ContactUs.objects.all()
+    template_name = 'contactus.html'
 
 
-def source_update(request, pk):
-    instance = get_object_or_404(Source, pk=pk)
-
-    if request.method == 'POST':
-        form = SourceForm(request.POST, instance=instance)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('/Source/')
-    else:
-        form = SourceForm(instance=instance)
-    return render(request, 'source_update.html', context={'form': form})
-
-
-def source_delete(request, pk):
-    instance = get_object_or_404(Source, pk=pk)
-    if request.method == 'POST':
-        instance.delete()
-        return HttpResponseRedirect('/Source/')
-    else:
-        return render(request, 'source_delete.html', context={'form': instance})
+class RatesList(ListView):
+    queryset = Rate.objects.all()
+    template_name = 'rates.html'

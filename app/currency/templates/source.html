@@ -6,7 +6,7 @@
 
 
 {% block content %}
-    <a href="/source/create/">Create source</a>
+    <a href="{% url 'currency:source_create' %}">Create source</a>
     <table style="border: 1px solid black; border-collapse: collapse">
         <tr>
             <th style="padding: 0.5rem 0.75rem; border: 1px solid black">
@@ -22,7 +22,7 @@
                 Phone number:
             </th>
         </tr>
-        {% for sour in sour %}
+        {% for sour in source_list %}
             <tr>
                 <td style="padding: 0.5rem 0.75rem; border: 1px solid black">
                     {{ sour.id }}
@@ -37,10 +37,10 @@
                     {{ sour.phone_number }}
                 </td>
                 <td style="padding: 0.5rem 0.75rem; border: 1px solid black">
-                    <a href="/source/update/{{ sour.id }}">Edit</a>
+                    <a href="{% url 'currency:source_update' sour.id%}">Edit</a>
                 </td>
                 <td style="padding: 0.5rem 0.75rem; border: 1px solid black">
-                    <a href="/source/delete/{{ sour.id }}">Delete</a>
+                    <a href="{% url 'currency:source_delete' sour.id%}">Delete</a>
                 </td>
             </tr>
 
