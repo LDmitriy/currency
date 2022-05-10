@@ -1,15 +1,11 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from django.views.generic import TemplateView
 
-from currency import views as currency_views
 
 urlpatterns = [
     path('/admin/', admin.site.urls),
-    path('', currency_views.index),
-    path('ContactUs/', currency_views.contactus),
-    path('Rates/', currency_views.rates),
-    path('Source/', currency_views.source),
-    path('source/create/', currency_views.source_create),
-    path('source/update/<int:pk>', currency_views.source_update),
-    path('source/delete/<int:pk>', currency_views.source_delete)
+    path('', TemplateView.as_view(template_name='index.html'), name='index'),
+    path('currency/', include('currency.urls')),
+    path('__debug__/', include('debug_toolbar.urls')),
 ]

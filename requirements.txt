@@ -4,3 +4,4 @@ flake8-print
 flake8-debugger==4.0.0
 django-extensions
 ipython
+django-debug-toolbar
