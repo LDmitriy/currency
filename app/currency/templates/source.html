@@ -37,10 +37,18 @@
                     {{ sour.phone_number }}
                 </td>
                 <td style="padding: 0.5rem 0.75rem; border: 1px solid black">
-                    <a href="{% url 'currency:source_update' sour.id%}">Edit</a>
+                    {% if user.is_superuser %}
+                        <a href="{% url 'currency:source_update' sour.id%}">Edit</a>
+                    {% else %}
+                        <a href="">Edit</a>
+                    {% endif %}
                 </td>
                 <td style="padding: 0.5rem 0.75rem; border: 1px solid black">
-                    <a href="{% url 'currency:source_delete' sour.id%}">Delete</a>
+                    {% if user.is_superuser %}
+                        <a href="{% url 'currency:source_delete' sour.id%}">Delete</a>
+                    {% else %}
+                        <a href="">Edit</a>
+                    {% endif %}
                 </td>
             </tr>
 
